@@ -5,6 +5,7 @@ const makeRender = (t=0) => {
 
   obj.rotation.y = 0.001*t
   lightsMesh.rotation.y = 0.001*t
+  cloudsMesh.rotation.y = 0.001*t
 
   
 
@@ -32,15 +33,19 @@ const loader = new THREE.TextureLoader()
 
 const material = new THREE.MeshStandardMaterial({map: loader.load("./earthmap1k.jpg")});
 const lightsMaterial = new THREE.MeshBasicMaterial({map: loader.load("./earthlights1k.jpg"), blending: THREE.AdditiveBlending})
-const light = new THREE.DirectionalLight("#ffffff", 1);
+const cloudsMaterial = new THREE.MeshStandardMaterial({map: loader.load("./earthcloudmap.jpg"), blending: THREE.AdditiveBlending})
+const light = new THREE.DirectionalLight("#aaaaaa", 0.6);
 const obj = new THREE.Mesh(geo, material)
 const lightsMesh = new THREE.Mesh(geo, lightsMaterial)
+const cloudsMesh = new THREE.Mesh(geo, cloudsMaterial)
+
 
 
 const wireMat = new THREE.MeshBasicMaterial({color: "white", wireframe: true})
 const wireMesh = new THREE.Mesh(geo, wireMat)
 wireMesh.scale.setScalar(1.002)
 const earthGroup = new THREE.Group()
+earthGroup.add(cloudsMesh)
 earthGroup.add(lightsMesh)
 
 
@@ -49,7 +54,7 @@ earthGroup.add(lightsMesh)
 
 
 camera.position.z = 4;
-light.position.set(-2,0,0);
+light.position.set(-20,0,0);
 earthGroup.rotation.z = -23.4 *Math.PI/180
 earthGroup.add(obj)
 const controls = new OrbitControls(camera, canvas);
