@@ -4,6 +4,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 const makeRender = (t=0) => {
 
   obj.rotation.y = 0.001*t
+  lightsMesh.rotation.y = 0.001*t
 
   
 
@@ -25,18 +26,22 @@ const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({antialias: true, canvas})
 
 
-const geo = new THREE.IcosahedronGeometry(1.0, 6);
+const geo = new THREE.IcosahedronGeometry(1.0, 12);
 
 const loader = new THREE.TextureLoader()
 
 const material = new THREE.MeshStandardMaterial({map: loader.load("./earthmap1k.jpg")});
-const light = new THREE.DirectionalLight("#ffffff", 4);
+const lightsMaterial = new THREE.MeshBasicMaterial({map: loader.load("./earthlights1k.jpg"), blending: THREE.AdditiveBlending})
+const light = new THREE.DirectionalLight("#ffffff", 1);
 const obj = new THREE.Mesh(geo, material)
+const lightsMesh = new THREE.Mesh(geo, lightsMaterial)
+
 
 const wireMat = new THREE.MeshBasicMaterial({color: "white", wireframe: true})
 const wireMesh = new THREE.Mesh(geo, wireMat)
 wireMesh.scale.setScalar(1.002)
 const earthGroup = new THREE.Group()
+earthGroup.add(lightsMesh)
 
 
 
