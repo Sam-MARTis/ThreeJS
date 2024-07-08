@@ -36,7 +36,7 @@ const startApp = () => {
 
 
   // meshes
-  const geometry = new THREE.PlaneGeometry(1, 1)
+  const geometry = new THREE.PlaneGeometry(1, 1, 10, 10)
   const material = new THREE.RawShaderMaterial({
     vertexShader: vertexShader,
     fragmentShader: fragmentShader,
@@ -72,7 +72,6 @@ const startApp = () => {
     magFilter: THREE.LinearFilter,
     stencilBuffer: false,
   }
-
   // save pass
   const savePass = new SavePass(new THREE.WebGLRenderTarget(width, height, renderTargetParameters))
 

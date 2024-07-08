@@ -35,6 +35,7 @@ export const initEngine = async () => {
   // shadow
   renderer.shadowMap.enabled = true
   renderer.shadowMap.type = THREE.PCFSoftShadowMap
+  renderer.setClearColor(0x111111, 0)
 
   document.body.appendChild(renderer.domElement)
 
