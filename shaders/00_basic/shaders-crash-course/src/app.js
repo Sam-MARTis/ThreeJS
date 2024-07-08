@@ -42,6 +42,12 @@ const startApp = () => {
     fragmentShader: fragmentShader
   })
 
+  console.log((geometry))
+ material.uniforms.uTime = {value: 0}
+  console.log(material)
+
+
+
   const ico = new THREE.Mesh(geometry, material)
   scene.add(ico)
 
