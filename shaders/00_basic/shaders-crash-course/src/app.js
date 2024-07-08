@@ -36,10 +36,11 @@ const startApp = () => {
 
 
   // meshes
-  const geometry = new THREE.IcosahedronGeometry(1, 5)
+  const geometry = new THREE.PlaneGeometry(1, 1)
   const material = new THREE.RawShaderMaterial({
     vertexShader: vertexShader,
-    fragmentShader: fragmentShader
+    fragmentShader: fragmentShader,
+    // wireframe: true
   })
 
   console.log((geometry))
