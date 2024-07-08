@@ -37,7 +37,7 @@ const startApp = () => {
 
   // meshes
   const geometry = new THREE.IcosahedronGeometry(1, 5)
-  const material = new THREE.ShaderMaterial({
+  const material = new THREE.RawShaderMaterial({
     vertexShader: vertexShader,
     fragmentShader: fragmentShader
   })
