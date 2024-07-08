@@ -45,9 +45,10 @@ const startApp = () => {
 
   console.log((geometry))
  material.uniforms.uTime = {value: 0}
+ material.uniforms.RADIUS = {value: 0.5}
   console.log(material)
 
-
+gui.add(material.uniforms.RADIUS, 'value', 0, 1)
 
   const ico = new THREE.Mesh(geometry, material)
   scene.add(ico)
