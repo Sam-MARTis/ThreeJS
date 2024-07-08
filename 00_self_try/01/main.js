@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 let canvas, renderer, cubes;
 const fov = 75;
-const AR = 2;
+const AR = window.innerWidth / window.innerHeight;
 const near = 0.1;
 const far = 5;
 const camera = new THREE.PerspectiveCamera(fov, AR, near, far);
