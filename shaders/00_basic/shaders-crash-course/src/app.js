@@ -36,7 +36,8 @@ const startApp = () => {
 
 
   // meshes
-  const geometry = new THREE.PlaneGeometry(1, 1, 10, 10)
+  // const geometry = new THREE.PlaneGeometry(1, 1, 10, 10)
+  const geometry = new THREE.IcosahedronGeometry(1, 200)
   const material = new THREE.RawShaderMaterial({
     vertexShader: vertexShader,
     fragmentShader: fragmentShader,
@@ -45,6 +46,8 @@ const startApp = () => {
 
   console.log((geometry))
  material.uniforms.uTime = {value: 0}
+
+ setInterval(()=>{material.uniforms.uTime.value +=10}, 10)
  material.uniforms.RADIUS = {value: 0.5}
   console.log(material)
 
