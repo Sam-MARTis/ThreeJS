@@ -14,6 +14,11 @@ const displacementFunction = (x: number, y: number) => {
   return { x: x + y / 10, y: y + x / 10 };
 };
 
+
+
+// Fix maxx and maxy not functioning properly
+
+
 const canvas = document.querySelector("canvas") as HTMLCanvasElement;
 canvas.width = window.innerWidth * devicePixelRatio;
 canvas.height = window.innerHeight * devicePixelRatio;
@@ -25,8 +30,8 @@ const camera = new THREE.PerspectiveCamera(fov, AR, near, far);
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
 
-const maxx = 3;
-const maxy = 3;
+const maxx = 9;
+const maxy = 2;
 const step = 1;
 const size = 0.1;
 
@@ -89,12 +94,12 @@ console.log(v2)
 const c2 = createColourVertices(colourVals)
 
 geometry.setAttribute("position", new THREE.BufferAttribute(v2, 3));
-geometry.setAttribute("color", new THREE.BufferAttribute(c2, 3));
+// geometry.setAttribute("color", new THREE.BufferAttribute(c2, 3));
 // geometry.setIndex(new THREE.BufferAttribute(indices, 1));
 
 const material = new THREE.MeshStandardMaterial({
-  vertexColors: true,
-// color: "white",
+//   vertexColors: true,
+color: "white",
   wireframe: false,
 });
 
