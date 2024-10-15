@@ -25,8 +25,8 @@ const camera = new THREE.PerspectiveCamera(fov, AR, near, far);
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
 
-const maxx = 10;
-const maxy = 10;
+const maxx = 2;
+const maxy = 2;
 const step = 1;
 const size = 0.1;
 
@@ -53,29 +53,48 @@ for(let j=0; j< maxy; j++){
 for(let i = 0; i<maxx; i++){
     xVals[j].push(i)
     yVals[j].push(i)
-    colourVals[j].push([Math.random(), Math.random(), 0])
+    colourVals[j].push([1,1, 1])
 }
 }
 
 const createVertices = (xArr: number[][], yArr: number[][]) => {
   const vertices = [];
-  for (let j = 0; j < yArr.length; j++) {
-    for (let i = 0; i < xArr.length; i++) {
-        vertices.push(xArr[i][j], yArr[i][j], 0);
+  for (let j = 0; j < yArr.length-1; j++) {
+    for (let i = 0; i < xArr.length-1; i++) {
+        vertices.push(xArr[j][i], yArr[j][i], 0);
+        vertices.push(xArr[j][i+1], yArr[j][i+1], 0);
+        vertices.push(xArr[j+1][i], yArr[j+1][i], 0);
+        vertices.push(xArr[j+1][i], yArr[j+1][i], 0);
+        vertices.push(xArr[j+1][i+1], yArr[j+1][i+1], 0);
+        vertices.push(xArr[j][i+1], yArr[j][i+1], 0);
     }
   }
     return new Float32Array(vertices);
 };
+const createColourVertices = (colourVals: number[][][]) => {
+    const vertices = []
+    for (let j = 0; j < colourVals.length; j++) {
+        for (let i = 0; i < colourVals.length; i++) {
+            vertices.push(colourVals[i][j][0], colourVals[i][j][1], colourVals[i][j][2] );
+        }
+      }
+        return new Float32Array(vertices);
+
+}
 
 
 const v2 = createVertices(xVals, yVals);
+// const v2 = new Float32Array([0, 0, 0, 1, 0, 0, 0, 1, 0])
+console.log(v2)
+const c2 = createColourVertices(colourVals)
 
-geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
-geometry.setAttribute("color", new THREE.BufferAttribute(colours, 3));
+geometry.setAttribute("position", new THREE.BufferAttribute(v2, 3));
+// geometry.setAttribute("color", new THREE.BufferAttribute(c2, 3));
 // geometry.setIndex(new THREE.BufferAttribute(indices, 1));
 
 const material = new THREE.MeshStandardMaterial({
-  vertexColors: true,
+//   vertexColors: true,
+color: "white",
   wireframe: false,
 });
 
